@@ -1,0 +1,39 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+    const rootHandle = document.getElementById('root')
+    const text = 'React is a javascript library. React is used for building user interfaces. React is created by facebook'
+    const ele = <p style = {{color:'green'}}> this is text </p>
+    // function search(menu, term){
+    // const result = menu.filter(function(item){
+    //     return item.name.includes(term)
+
+    // })
+    // return result
+    // }
+    function TextHighLight (props){
+        
+
+        return (
+            text
+            
+        )
+
+    }
+    
+   ReactDOM.render(<TextHighLight data={text} search="React" />, rootHandle)
+  </script>
+</body>
+
+</html>

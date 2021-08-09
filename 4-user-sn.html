@@ -1,0 +1,68 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+    const rootHandle = document.getElementById('root')
+
+    const users = [
+       {id: 101, name: 'user1', email:'user1@gmail.com'},
+       {id: 201, name: 'user2', email:'user2@yahoo.com'},
+       {id: 202, name: 'user3', email:'user3@outlook.com'},
+       {id: 404, name: 'user4', email:'user4@gmail.com'}
+   ]
+
+   function UsersList (props){
+     const showdetails = function(user){
+
+     }
+   return(
+       <div>
+        <h1>listing Users - {props.data.length}</h1>
+        <table border = "1">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>name</th>
+                    <th>email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    users.map(function(user,i){
+                        return(
+                            <tr key ={user.id}>
+                                <td>{i+1}</td>
+                                <td>{user.name}</td>
+                                <td>{user.email}</td>
+                                
+                            </tr>
+
+                        )
+                
+                  })
+                }
+            
+            </tbody>
+            </table>
+                </div>
+            
+                )
+            }
+
+   ReactDOM.render(<UsersList data = {users} />,rootHandle)
+
+   
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+    const rootHandle = document.getElementById('root')
+
+    class Movies extends React.Component{
+        constructor(){
+            super()
+            this.state = {
+        movies:[
+                {id: 1, name: 'black panther', rating: 4, genre: 'action', Watched:true},
+                {id: 2, name: 'avangers', rating: 4.2, genre: 'action', Watched:false},
+                {id: 3, name: 'harry potter', rating: 4.5, genre: 'action', Watched:false}
+
+             ],
+             id: '',
+            name: '',
+            rating:'',
+            gener:'',
+            watched: false 
+               
+
+            }
+        }
+        handleIdChange = (e) => {
+            const id = e.target.value
+            this.setState({id})
+        }
+
+        handleNamechange = (e) => {
+            const name = e.target.value
+            this.setState({name})
+        }
+
+        handleRatingChange = (e) => {
+            const rating = e.target.value
+            this.setState({rating})
+        }
+
+        handleGenerChange = (e) => {
+            const gener = e.target.value
+            this.setState({gener})
+        }
+
+        
+
+       handlewatchedchange = (e) => {
+                const watched = e.target.value
+                this.setState({watched})
+         }
+            
+
+        handleSubmit= (e) => {
+        e.preventDefault() 
+        const formData = {
+            id: parseInt(this.state.id), 
+            name: this.state.name, 
+            rating: this.state.rating,
+            watched: this.state.watched 
+        }
+        this.setState((prevState) => {
+            return {
+                movies: prevState.movies.concat(formData),
+                id: '',
+                name: '',
+                rating:'',
+                gener:'',
+                watched: false 
+            }
+        })
+    }
+        render(){
+            return(
+                <div>
+                    <h1>My Movie List - {this.state.movies.length}</h1>
+                    <table border = "1">
+                           <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Genre</th>
+                                    <th>Rating</th>
+                                    <th>Watched On</th>
+                                    <th>Actions</th>
+                                    
+                                </tr>
+                           </thead>
+                           <tbody>
+                               {
+                                   this.state.movies.map((movie, i) => {
+                                       return(
+                                            <tr key = {movie.id}>
+                                                <td>{i+1}</td>
+                                                <td>{movie.name}</td>
+                                                <td>{movie.genre}</td>
+                                                <td>{movie.rating}</td>
+                                                <td>{movie.Watched}</td>
+                                                <td>{movie.action}<button onClick={() => {
+                                                    this.handleRemove(movie.id)
+                                                }}>remove</button></td>
+                                                
+                                                
+
+                                            </tr>
+                                       )
+                                   })
+                               }
+                           </tbody>
+                    </table>
+
+                    <h2>Add movie</h2>
+                       <form onSubmit={this.handleSubmit}>
+                           <label htmlFor = "id">id</label>
+                           <input type = "text"  id = "id" value = {this.state.id} onChange = {this.handleIdChange} /><br />
+                           <label htmlFor = "name">name</label>
+                           <input type = "text" id ="name" value = {this.state.name} onChange = {this.handleNamechange} /><br />
+                           <label htmlFor = "rating">rating</label>
+                           <input type = "text" id = "rating" value = {this.state.rating} onChange = {this.handleRatingChange} /><br />
+                           <label htmlFor = "gener">gener</label>
+                           <input type = "checkbox"  id ="action" value = {this.state.gener} onChange = {this.state.handleGenerChange} />
+                           <label htmlFor = "action">action</label>
+                           <input type = "checkbox"  id ="drama" value = {this.state.gener} onChange = {this.state.handleGenerChange} />
+                           <label htmlFor = "drama">drama</label>
+                           <input type = "checkbox"  id ="romance" value = {this.state.gener} onChange = {this.state.handleGenerChange} />
+                           <label htmlFor = "romance">romance</label><br />
+                           <label>watched</label>
+                           <input type="checkbox" checked={this.state.watched} onChange = {this.handlewatchedchange} /><br />
+                           <label htmlFor = "date">date</label>
+                           <input type = "date" /><br />
+                           <input type = 'submit' value = 'Add movie' />
+                       </form>
+                </div>
+            )
+        }
+        
+    }
+    ReactDOM.render(<Movies />, rootHandle)
+   
+  </script>
+</body>
+
+</html>
